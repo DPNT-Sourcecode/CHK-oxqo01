@@ -27,7 +27,8 @@ def checkout(skus):
 
     for k, v in items_map.items():
         if k in ITEMS and v > 0:
-            checkout_sum += ITEMS[k]
+            checkout_sum += ITEMS[k] * v
 
     return checkout_sum
+
 
