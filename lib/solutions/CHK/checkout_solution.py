@@ -61,10 +61,8 @@ def take_free_offers(skus, offers):
             # Check if offer item the same as free item, then items must be more than offer by 1
             if k == free_item and offer[0] + 1 <= items_map[k]:
                 items_map[free_item] -= offer_number
-            else:  # free item is different from offer item
-                while item_has_offer and free_item in items_map:
-                    items_map[free_item] -= offer_number
-                    item_has_offer, offer = has_offer(offers, k, items_map[k])
+            elif free_item in items_map:  # free item is different from offer item
+                items_map[free_item] -= offer_number
     return items_map
 
 
@@ -76,6 +74,7 @@ def checkout(skus):
     checkout_sum = discounted_offers(items_map, OFFERS["discounted_offers"])
 
     return checkout_sum
+
 
 
 
