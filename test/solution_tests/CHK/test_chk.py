@@ -3,4 +3,5 @@ from solutions.CHK import checkout_solution
 
 class TestCHK():
     def test_checkout(self):
-        assert checkout_solution.checkout("AAACDBBBEE") == 290
+        assert checkout_solution.checkout("EE") == 80
+
