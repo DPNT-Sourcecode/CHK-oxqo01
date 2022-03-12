@@ -10,7 +10,3 @@ class TestCHK():
 ("FFFF") == 30
 ("AAACDBBBEEFFF") == 310
 """
-
-
-
-
