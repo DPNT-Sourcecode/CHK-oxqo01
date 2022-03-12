@@ -31,10 +31,10 @@ def is_illegal_basket(skus) -> bool:
 
 def discounted_offers(items_map, offers):
     checkout_sum = 0
-    for k, v in items_map.items():
-        item_has_offer, offer = has_offer(offers, k, v)
+    for k, _ in items_map.items():
+        item_has_offer, offer = has_offer(offers, k, items_map[k])
         while item_has_offer:
-            offer_number = v // offer[0]
+            offer_number = items_map[k] // offer[0]
             checkout_sum += (offer[1] * offer_number)
             items_map[k] -= offer[0] * offer_number
             item_has_offer, offer = has_offer(offers, k, items_map[k])
@@ -63,5 +63,6 @@ def checkout(skus):
     checkout_sum = discounted_offers(items_map, OFFERS["discounted_offers"])
 
     return checkout_sum
+
 
 
