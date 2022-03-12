@@ -17,7 +17,7 @@ def checkout(skus):
     checkout_sum = 0
 
     for k, v in items_map.items():
-        if k not in OFFERS:
+        if k not in ITEMS:
             return -1
 
         if k in OFFERS and v >= OFFERS[k][0]:
@@ -30,3 +30,4 @@ def checkout(skus):
             checkout_sum += ITEMS[k]
 
     return checkout_sum
+
