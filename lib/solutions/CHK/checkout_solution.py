@@ -116,10 +116,10 @@ def group_offers(items_map, offers):
     checkout_sum = 0
     for offer_items, details in offers.items():
         offer_existing_items = []
-        for k, _ in items_map.items():
-            if k in offer_items and items_map[k] > 0:
-                for i in range(items_map[k]):
-                    offer_existing_items.append(k)
+        for c in offer_items:
+            if c in items_map and items_map[c] > 0:
+                for i in range(items_map[c]):
+                    offer_existing_items.append(c)
 
         if len(offer_existing_items) >= details[0]:
             offer_number = len(offer_existing_items) // details[0]
@@ -139,3 +139,4 @@ def checkout(skus):
     checkout_sum = discounted_offers(items_map, OFFERS["discounted_offers"], checkout_sum)
 
     return checkout_sum
+

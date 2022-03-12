@@ -3,7 +3,7 @@ from solutions.CHK import checkout_solution
 
 class TestCHK():
     def test_checkout(self):
-        assert checkout_solution.checkout("SSSZ") == 65
+        assert checkout_solution.checkout("STXSTX") == 90
 
 
 """
@@ -13,3 +13,4 @@ class TestCHK():
  - {"method":"checkout","params":["SSS"],"id":"CHK_R5_141"}, expected: 45, got: 60
  - {"method":"checkout","params":["SSSZ"],"id":"CHK_R5_142"}, expected: 65, got: 81
 """
+
