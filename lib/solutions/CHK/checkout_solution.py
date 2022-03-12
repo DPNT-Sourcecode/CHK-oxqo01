@@ -44,7 +44,7 @@ OFFERS = {
         "U": [(3, "U")]
     },
     "group_offers": {
-        "STXYZ": [(3, 45)]
+        "STXYZ": (3, 45)
     }
 }
 
@@ -114,11 +114,17 @@ def take_free_offers(skus, offers):
 
 def group_offers(items_map, offers):
     checkout_sum = 0
-    for offer in offers:
+    for offer_items, details in offers.items():
         offer_existing_items = []
-        for k, v in items_map.items():
-            if k in offer and v > 0:
+        for k, _ in items_map.items():
+            if k in offer_items and items_map[k] > 0:
                 offer_existing_items.append(k)
+
+        if len(offer_existing_items) >= details[0]:
+            for i in range(details[0]):
+                items_map[offer_existing_items[i]] -= 1
+            checkout_sum += details[1]
+
     return checkout_sum, items_map
 
 
@@ -132,4 +138,5 @@ def checkout(skus):
 
 
     return checkout_sum
+
 
