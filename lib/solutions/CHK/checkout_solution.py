@@ -1,5 +1,5 @@
-ITEMS = {"A": 50, "B": 30, "C": 20, "D": 15}
-OFFERS = {"A": (3, 130), "B": (2, 45)}
+ITEMS = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40}
+OFFERS = {"A": (3, 130), "B": (2, 45), "E": (2, "B")}
 
 
 def get_items_map(skus):
@@ -22,6 +22,9 @@ def checkout(skus):
 
         if k in OFFERS and v >= OFFERS[k][0]:
             offer_number = v // OFFERS[k][0]
+            if OFFERS[k][1] in items_map:
+                items_map[OFFERS[k][1]] -= offer_number
+                continue
             checkout_sum += (OFFERS[k][1] * offer_number)
             items_map[k] -= OFFERS[k][0] * offer_number
 
