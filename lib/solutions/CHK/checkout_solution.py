@@ -1,7 +1,7 @@
-ITEMS = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40}
+ITEMS = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40, "F": 10}
 
 OFFERS = {"discounted_offers": {"A": [(5, 200), (3, 130)], "B": [(2, 45)]},
-          "take_free_offers": {"E": [(2, "B")]}}
+          "take_free_offers": {"E": [(2, "B")], "F": [(2, "F")]}}
 
 
 def has_offer(offers, k, v):
@@ -45,13 +45,21 @@ def discounted_offers(items_map, offers):
     return checkout_sum
 
 
+def take_same_item_free(items_map, item, offer_number, free_item):
+    if free_item in items_map and item == free_item and offer_number >= items_map[free_item]:
+        return True
+    return False
+
+
 def take_free_offers(skus, offers):
     items_map = get_items_map(skus)
-    for k, v in items_map.items():
-        item_has_offer, offer = has_offer(offers, k, v)
-        if item_has_offer and offer[1] in items_map:
-            offer_number = v // offer[0]
-            items_map[offer[1]] -= offer_number
+    for k, _ in items_map.items():
+        item_has_offer, offer = has_offer(offers, k, items_map[k])
+        free_item = offer[1]
+        while item_has_offer and free_item in items_map:
+            offer_number = items_map[k] // offer[0]
+            items_map[free_item] -= offer_number
+            item_has_offer, offer = has_offer(offers, k, items_map[k])
     return items_map
 
 
@@ -63,6 +71,7 @@ def checkout(skus):
     checkout_sum = discounted_offers(items_map, OFFERS["discounted_offers"])
 
     return checkout_sum
+
 
 
 
