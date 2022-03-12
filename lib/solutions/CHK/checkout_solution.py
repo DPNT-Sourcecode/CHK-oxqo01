@@ -33,10 +33,11 @@ def discounted_offers(items_map, offers):
     checkout_sum = 0
     for k, v in items_map.items():
         item_has_offer, offer = has_offer(offers, k, v)
-        if item_has_offer:
+        while item_has_offer:
             offer_number = v // offer[0]
             checkout_sum += (offer[1] * offer_number)
             items_map[k] -= offer[0] * offer_number
+            item_has_offer, offer = has_offer(offers, k, items_map[k])
 
     for k, v in items_map.items():
         if k in ITEMS and v > 0:
@@ -62,4 +63,5 @@ def checkout(skus):
     checkout_sum = discounted_offers(items_map, OFFERS["discounted_offers"])
 
     return checkout_sum
+
 
