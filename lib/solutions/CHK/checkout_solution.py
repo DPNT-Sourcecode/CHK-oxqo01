@@ -35,13 +35,16 @@ OFFERS = {
         "P": [(5, 200)],
         "Q": [(3, 80)],
         "V": [(3, 130), (2, 90)]
-},
+    },
     "take_free_offers": {
         "E": [(2, "B")],
         "F": [(2, "F")],
         "N": [(3, "M")],
         "R": [(3, "Q")],
         "U": [(3, "U")]
+    },
+    "group_offers": {
+        "STXYZ": [(3, 45)]
     }
 }
 
@@ -110,12 +113,19 @@ def take_free_offers(skus, offers):
     return items_map
 
 
+def group_offers(items_map, offers, checkout_sum):
+
+    return checkout_sum
+
+
 def checkout(skus):
     if is_illegal_basket(skus):
         return -1
 
     items_map = take_free_offers(skus, OFFERS["take_free_offers"])
     checkout_sum = discounted_offers(items_map, OFFERS["discounted_offers"])
+    checkout_sum = group_offers(items_map, OFFERS["group_offers"])
 
     return checkout_sum
+
 
