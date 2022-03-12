@@ -33,5 +33,3 @@ def checkout(skus):
             checkout_sum += ITEMS[k] * v
 
     return checkout_sum
-
-
