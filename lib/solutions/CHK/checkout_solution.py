@@ -127,5 +127,3 @@ def checkout(skus):
     checkout_sum = group_offers(items_map, OFFERS["group_offers"])
 
     return checkout_sum
-
-
