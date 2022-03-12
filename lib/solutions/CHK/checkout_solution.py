@@ -40,7 +40,7 @@ def take_free_offers(skus, offers):
     for k, v in items_map.items():
         if k in offers and v >= offers[k][0] and offers[k][1] in items_map:
             offer_number = v // offers[k][0]
-            items_map[OFFERS[k][1]] -= offer_number
+            items_map[offers[k][1]] -= offer_number
     return items_map
 
 
@@ -52,4 +52,5 @@ def checkout(skus):
     checkout_sum = discounted_offers(items_map, OFFERS["discounted_offers"])
 
     return checkout_sum
+
 
