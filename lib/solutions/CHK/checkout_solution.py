@@ -44,7 +44,7 @@ OFFERS = {
         "U": [(3, "U")]
     },
     "group_offers": {
-        "STXYZ": (3, 45)
+        "ZSYTX": (3, 45)
     }
 }
 
@@ -139,8 +139,3 @@ def checkout(skus):
     checkout_sum = discounted_offers(items_map, OFFERS["discounted_offers"], checkout_sum)
 
     return checkout_sum
-
-
-
-
-

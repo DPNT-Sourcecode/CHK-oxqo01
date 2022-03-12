@@ -13,6 +13,3 @@ class TestCHK():
  - {"method":"checkout","params":["SSS"],"id":"CHK_R5_141"}, expected: 45, got: 60
  - {"method":"checkout","params":["SSSZ"],"id":"CHK_R5_142"}, expected: 65, got: 81
 """
-
-
-
